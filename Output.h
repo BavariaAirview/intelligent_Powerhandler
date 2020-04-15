@@ -1,3 +1,5 @@
+
+// ##############  Bluepill   HW zuweisung  falsch
 #define DATA_PIN PB1
 #define Relais1_pin PB12
 #define Relais2_pin PB13

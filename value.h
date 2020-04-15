@@ -6,6 +6,11 @@ int temp_offset = 1;
 
 //_________________________________________________________________ no change below this line nessasary
 
+String M_Menu[10];
+String O_Menu[5];
+String v1_Menu[3];
+String v2_Menu[3];
+
 uint8_t LED1_r = 0;
 uint8_t LED2_r = 0;
 uint8_t LED3_r = 0;
@@ -31,6 +36,23 @@ bool Relais5 = false;
 bool Relais6 = false;
 bool Relais7 = false;
 bool Relais8 = false;
+
+char courser_pos = 1;         // 1 = Hauptmenüpunkt, 2 = Option, 3 = Value1, 4 = Value2
+char courser_pos_alt = 1;
+int ueberhame1 = 0;
+int ueberhame2 = 0;
+char nOption = 0;
+char nOption_alt = 0;
+char nMainMenu = 0;
+char nMainMenu_alt = 0;
+int nValue1 = 0;
+int nValue2 = 0;
+bool numValue1 = False;
+bool numValue2 = False;
+String MainMenu = "";
+String Option = "";
+String Value1 = "";
+String Value2 = "";
 
 String Courser_pos = "menu";
 
