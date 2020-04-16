@@ -1,22 +1,15 @@
-#include <LiquidCrystal_I2C.h>
 #include <Wire.h>
-#include <FastLED.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 #include "value.h"
+#include <FastLED.h>
+CRGB leds[NUM_LEDS];
 #include "Output.h"
 #include "encode.h"
 #include "menu.h"
+#include "input.h"
 
-#define debug 1
 
-#define NUM_LEDS 4
-CRGB leds[NUM_LEDS];
-#define COLOR_ORDER RGB
-#define CHIPSET     WS2811
-#define BRIGHTNESS  200
-#define FRAMES_PER_SECOND 10
-
-TwoWire Wire(PB6, PB7, SOFT_STANDARD);
-LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 void setup() {
   FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
@@ -31,7 +24,7 @@ void setup() {
   pinMode (Taster3, INPUT);
   pinMode (Taster4, INPUT);
   pinMode (NTC_pin, INPUT);
-  pinMode (3D_Printer_pin, INPUT);
+  pinMode (Printer_Bed_pin, INPUT);
 
   pinMode (Relais1_pin, OUTPUT);
   pinMode (Relais2_pin, OUTPUT);
@@ -45,25 +38,39 @@ void setup() {
   attachInterrupt(encoder0PinA, doEncoderA, CHANGE);
   attachInterrupt(encoder0PinB, doEncoderB, CHANGE);
 
-  lcd.clear()
+  lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Init");
   Relais1 = true;
   LED_INIT_SHOW();
 }
-
+//________________________________________________________________________ Main
 void loop() {
+
   input_read();
+  taster();
+  logik();            //  ----------  NEXT
+
 #ifdef debug
   debug_print();
 #endif
-
+  encoder_calc();
   Menu();
+  Menu_Inhalt();
+  LCD_OUTPUT();
 
   LED_SET();
 
   Relais3 = Relais2;
   Relais_Output();
+
+#ifdef debug
+  debug_print();
+#endif
+} //__________________________________________________________end loop()
+
+void logik(){
+  
 }
 
 void debug_print() {
