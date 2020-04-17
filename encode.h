@@ -94,31 +94,41 @@ void doEncoderB() {
 
     // check channel A to see which way encoder is turning
     if (digitalRead(encoder0PinA) == HIGH) {
-      if (courser_pos == 1) {
-        nMainMenu++;
-      } else if (courser_pos == 2) {
-        boolValue = !boolValue;
-      } else if (courser_pos == 3) {
-        if (nValue2 = 0) {
-          soll_temp = soll_temp + 0.5;
-        }
-        if (nValue2 = 1) {
-          delay_printer++;
+      if (Menuauswahl == false) {
+        courser_pos++;
+      }
+      else {
+        if (courser_pos == 1) {
+          nMainMenu++;
+        } else if (courser_pos == 2) {
+          boolValue = !boolValue;
+        } else if (courser_pos == 3) {
+          if (nValue2 = 0) {
+            soll_temp = soll_temp + 0.5;
+          }
+          if (nValue2 = 1) {
+            delay_printer++;
+          }
         }
       }
     }
     else
     {
-      if (courser_pos == 1) {
-        nMainMenu--;
-      } else if (courser_pos == 2) {
-        boolValue = !boolValue;
-      } else if (courser_pos == 3) {
-        if (nValue2 = 0) {
-          soll_temp = soll_temp - 0.5;
-        }
-        if (nValue2 = 1) {
-          delay_printer--;
+      if (Menuauswahl == false) {
+        courser_pos--;
+      }
+      else {
+        if (courser_pos == 1) {
+          nMainMenu--;
+        } else if (courser_pos == 2) {
+          boolValue = !boolValue;
+        } else if (courser_pos == 3) {
+          if (nValue2 = 0) {
+            soll_temp = soll_temp - 0.5;
+          }
+          if (nValue2 = 1) {
+            delay_printer--;
+          }
         }
       }
     }
@@ -130,31 +140,41 @@ void doEncoderB() {
   {
     // check channel B to see which way encoder is turning
     if (digitalRead(encoder0PinA) == LOW) {
-      if (courser_pos == 1) {
-        nMainMenu++;
-      } else if (courser_pos == 2) {
-        nValue1++;
-      } else if (courser_pos == 3) {
-        if (nValue2 = 0) {
-          soll_temp = soll_temp + 0.5;
-        }
-        if (nValue2 = 1) {
-          delay_printer++;
+      if (Menuauswahl == false) {
+        courser_pos++;
+      }
+      else {
+        if (courser_pos == 1) {
+          nMainMenu++;
+        } else if (courser_pos == 2) {
+          nValue1++;
+        } else if (courser_pos == 3) {
+          if (nValue2 = 0) {
+            soll_temp = soll_temp + 0.5;
+          }
+          if (nValue2 = 1) {
+            delay_printer++;
+          }
         }
       }
     }
     else
     {
-      if (courser_pos == 1) {
-        nMainMenu--;
-      } else if (courser_pos == 2) {
-        nValue1--;
-      } else if (courser_pos == 3) {
-        if (nValue2 = 0) {
-          soll_temp = soll_temp - 0.5;
-        }
-        if (nValue2 = 1) {
-          delay_printer--;
+      if (Menuauswahl == false) {
+        courser_pos--;
+      }
+      else {
+        if (courser_pos == 1) {
+          nMainMenu--;
+        } else if (courser_pos == 2) {
+          nValue1--;
+        } else if (courser_pos == 3) {
+          if (nValue2 = 0) {
+            soll_temp = soll_temp - 0.5;
+          }
+          if (nValue2 = 1) {
+            delay_printer--;
+          }
         }
       }
     }

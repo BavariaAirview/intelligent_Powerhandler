@@ -1,14 +1,14 @@
 void Menu() {
-  if ( Taster_enco == true && Taster_enco_alt == false && DisplayON == true ) {
+  if ( Taster_enco && !Taster_enco_alt && DisplayON ) {
     Taster_enco_alt = true;
     Menuauswahl = !Menuauswahl;
     if (courser_pos == 2 && Menuauswahl == true) {
-      set_boolValue == true;
+      set_boolValue = true;
     }
   }
-  if (Taster_enco == false)  Taster_enco_alt = false;
+  if (!Taster_enco)  Taster_enco_alt = false;
 
-  if (DisplayON == false) {
+  if (!DisplayON) {
     Menuauswahl = false;
   }
 
@@ -18,7 +18,7 @@ void Menu() {
   if (nMainMenu < 0) nMainMenu = 5;
   if (nMainMenu >= 6) nMainMenu = 0;
 
-  if (Menuauswahl == false) {
+  if (!Menuauswahl) {
     if (nMainMenu == 0) {
       boolValue = drucker;
     }
@@ -39,7 +39,7 @@ void Menu() {
     }
   }
 
-  if (boolValue == true) {
+  if (boolValue) {
     nValue1 = 1;
   } else {
     nValue1 = 0;
@@ -93,7 +93,7 @@ void Menu_Inhalt() {
 }
 
 void backlight_control() {
-  if (Taster_enco == true || Taster1 == true || Taster2 == true || Taster3 == true || Taster4 == true) {
+  if (Taster_enco || Taster1 || Taster2 || Taster3 || Taster4 ) {
     diplaytimer = millis() + 10000;
   }
   if (diplaytimer > millis()) {

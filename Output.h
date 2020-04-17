@@ -1,6 +1,6 @@
 void LED_Status() {
-  if (DisplayON == true) {
-    if (drucker == true) {
+  if (DisplayON) {
+    if (drucker) {
       LED1[0] = 0;
       LED1[1] = LED_MAX;
       LED1[2] = 0;
@@ -9,7 +9,7 @@ void LED_Status() {
       LED1[1] = 0;
       LED1[2] = 0;
     }
-    if (licht == true) {
+    if (licht) {
       LED2[0] = 0;
       LED2[1] = LED_MAX;
       LED2[2] = 0;
@@ -18,7 +18,7 @@ void LED_Status() {
       LED2[1] = 0;
       LED2[2] = 0;
     }
-    if (tools == true) {
+    if (tools) {
       LED3[0] = 0;
       LED3[1] = LED_MAX;
       LED3[2] = 0;
@@ -27,7 +27,7 @@ void LED_Status() {
       LED3[1] = 0;
       LED3[2] = 0;
     }
-    if (PC == true) {
+    if (PC) {
       LED4[0] = 0;
       LED4[1] = LED_MAX;
       LED4[2] = 0;
@@ -79,59 +79,59 @@ void LED_SET() {
 
 void Relais_Output() {
   
-  if (SystemON == true) {
-    Relais1 == true;
+  if (SystemON) {
+    Relais1 = true;
   } else {
-    Relais1 == false;
+    Relais1 = false;
   }
-  if (Heizung == true) {
-    Relais2 == true;
+  if (Heizung) {
+    Relais2 = true;
   } else {
-    Relais2 == false;
+    Relais2 = false;
   }
   Relais3 = Relais2;
-  if (drucker == true) {
-    Relais4 == true;
+  if (drucker) {
+    Relais4 = true;
   } else {
-    Relais4 == false;
+    Relais4 = false;
   }
-  if (licht == true) {
-    Relais5 == true;
+  if (licht) {
+    Relais5 = true;
   } else {
-    Relais5 == false;
+    Relais5 = false;
   }
-  if (tools == true) {
-    Relais6 == true;
+  if (tools) {
+    Relais6 = true;
   } else {
-    Relais6 == false;
+    Relais6 = false;
   }
-  if (PC == true) {
-    Relais7 == true;
+  if (PC) {
+    Relais7 = true;
   } else {
-    Relais7 == false;
+    Relais7 = false;
   }
-  if (drucker == true || PC == true) {
-    Relais8 == true;
+  if (drucker || PC ) {
+    Relais8 = true;
   } else {
-    Relais8 == false;
+    Relais8 = false;
   }
 
-  if (Relais1 == true) {
+  if (Relais1) {
     digitalWrite(Relais1_pin, HIGH);
   } else {
     digitalWrite(Relais1_pin, LOW);
   }
-  if (Relais2 == true) {
+  if (Relais2) {
     digitalWrite(Relais2_pin, HIGH);
   } else {
     digitalWrite(Relais2_pin, LOW);
   }
-  if (Relais3 == true) {
+  if (Relais3) {
     digitalWrite(Relais3_pin, HIGH);
   } else {
     digitalWrite(Relais3_pin, LOW);
   }
-  if (Relais4 == true) {
+  if (Relais4) {
     digitalWrite(Relais4_pin, HIGH);
   } else {
     digitalWrite(Relais4_pin, LOW);
@@ -141,17 +141,17 @@ void Relais_Output() {
   } else {
     digitalWrite(Relais5_pin, LOW);
   }
-  if (Relais6 == true) {
+  if (Relais6) {
     digitalWrite(Relais6_pin, HIGH);
   } else {
     digitalWrite(Relais6_pin, LOW);
   }
-  if (Relais7 == true) {
+  if (Relais7) {
     digitalWrite(Relais7_pin, HIGH);
   } else {
     digitalWrite(Relais7_pin, LOW);
   }
-  if (Relais8 == true) {
+  if (Relais8) {
     digitalWrite(Relais8_pin, HIGH);
   } else {
     digitalWrite(Relais8_pin, LOW);

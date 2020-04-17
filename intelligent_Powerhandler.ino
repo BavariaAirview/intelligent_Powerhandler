@@ -66,7 +66,7 @@ void loop() {
   LED_SET();
 
   allesAndere = (licht || PC || tools);
-  if (drucker == true && licht == false &&  PC == false && tools == false) {
+  if (drucker && !licht &&  !PC && !tools) {
     soll_temp = 12;
     printer_ready();
   }

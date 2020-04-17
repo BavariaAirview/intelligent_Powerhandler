@@ -19,7 +19,7 @@ void input_read() {
   Printer_done = digitalRead(Printer_Bed_pin);
   alleTaster = ( Taster1 || Taster2 || Taster3 || Taster4 || Taster_enco);
 
-  if (Printer_done == false && printprogress == false) printprogress == true;
+  if (!Printer_done && !printprogress ) printprogress = true;
 }
 
 void temp_control() {
@@ -45,26 +45,26 @@ void taster() {
     Taster1_alt = true;
     waittime = millis() + 500;
   }
-  if (Taster1 == false) Taster1_alt = false;
+  if (!Taster1) Taster1_alt = false;
 
   if (Taster2 == true && Taster2_alt == false && waittime < millis()) {
     licht = !licht;
     Taster2_alt = true;
     waittime = millis() + 500;
   }
-  if (Taster2 == false) Taster2_alt = false;
+  if (!Taster2) Taster2_alt = false;
 
   if (Taster3 == true && Taster3_alt == false && waittime < millis()) {
     tools = !tools;
     Taster3_alt = true;
     waittime = millis() + 500;
   }
-  if (Taster3 == false) Taster3_alt = false;
+  if (!Taster3) Taster3_alt = false;
 
   if (Taster4 == true && Taster4_alt == false && waittime < millis()) {
     PC = !PC;
     Taster4_alt = true;
     waittime = millis() + 500;
   }
-  if (Taster4 == false) Taster4_alt = false;
+  if (!Taster4) Taster4_alt = false;
 }
