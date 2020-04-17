@@ -32,11 +32,11 @@ void temp_control() {
 }
 
 void printer_ready() {
-  if (printprogress == true && Printer_done == true) {
+  if (printprogress == true && Printer_done == true && printdelay == 0) {
     printdelay = millis() + (delay_printer * 60 * 60 * 1000);
   }
   if (printdelay < millis && allesAndere == false) SystemON = false;
-
+  if (allesAndere == true) printdelay = 0;
 }
 
 void taster() {

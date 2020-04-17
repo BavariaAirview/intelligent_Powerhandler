@@ -67,7 +67,7 @@ char Value2 = "";
 long waittime = 0;
 long diplaytimer = 10000;
 long menudelay = 0;
-long printdelay = 1000;
+long printdelay = 0;
 String error = "";
 bool printprogress = false;
 

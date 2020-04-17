@@ -58,9 +58,6 @@ void loop() {
   input_read();
   taster();
   backlight_control();
-#ifdef debug
-  debug_print();
-#endif
   Menu();
   Menu_Inhalt();
   LCD_OUTPUT();
