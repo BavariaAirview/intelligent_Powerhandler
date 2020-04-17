@@ -1,4 +1,3 @@
-
 void input_read() {
 
   NTC = analogRead(NTC_pin) * 100 / 4095;

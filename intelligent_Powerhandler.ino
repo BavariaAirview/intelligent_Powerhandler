@@ -48,6 +48,9 @@ void setup() {
   LED_Status();
   LED_SET();
   delay(1000);
+#ifdef debug
+  Serial.begin(115200);
+#endif
 }
 //________________________________________________________________________ Main
 void loop() {
@@ -99,7 +102,7 @@ void debug_print() {
   Serial.print("\t");
   Serial.print(Relais8);
   Serial.println("");
-  
+
   Serial.print("Taster");
   Serial.print(Taster1);
   Serial.print("\t");
