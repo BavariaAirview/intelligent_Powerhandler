@@ -1,5 +1,7 @@
 #define NUM_FILTER 40
 #define NUM_LEDS 4
+#define LED_MAX 200
+#define LED_LOW 40
 
 #define debug 1
 
@@ -37,22 +39,11 @@ uint8_t delay_PC = 1;          // Minuten
 #define encoder0PinA 11
 #define encoder0PinB 12
 
-uint8_t LED1_r = 0;
-uint8_t LED2_r = 0;
-uint8_t LED3_r = 0;
-uint8_t LED4_r = 0;
-uint8_t LED1_g = 0;
-uint8_t LED2_g = 0;
-uint8_t LED3_g = 0;
-uint8_t LED4_g = 0;
-uint8_t LED1_b = 0;
-uint8_t LED2_b = 0;
-uint8_t LED3_b = 0;
-uint8_t LED4_b = 0;
-
-int encoderPinALast = LOW;
-int rotation = LOW;
-volatile unsigned int encoderPos = 0;
+//                R G B
+uint8_t LED1[] = {0,0,0};     // 3D Drucker
+uint8_t LED2[] = {0,0,0};     // Licht
+uint8_t LED3[] = {0,0,0};     // Tools
+uint8_t LED4[] = {0,0,0};     // PC
 
 bool Relais1 = false;   // Netzteil
 bool Relais2 = false;   // Heizung
@@ -65,14 +56,20 @@ bool Relais8 = false;   // Netzwerk
 
 uint8_t courser_pos = 1;         // 1 = Hauptmenüpunkt, 2 = Value1, 3 = Value2
 uint8_t nMainMenu = 0;
-uint8_t nMainMenu_alt = 0;
 uint8_t nValue1 = 0;
+bool boolValue = false;
+bool set_boolValue = false;
 uint8_t nValue2 = 0;
 float numValue2 = 0;
 char MainMenu = "";
 char Value1 = "";
 char Value2 = "";
-int waittime = 0;
+long waittime = 0;
+long diplaytimer = 10000;
+long menudelay = 0;
+long printdelay = 1000;
+String error = "";
+bool printprogress = false;
 
 float NTC = 0;
 float temp = 0;
@@ -85,6 +82,9 @@ bool licht = true;
 bool tools = false;
 bool PC = false;
 bool Heizung = true;
+bool Menuauswahl = false;
+bool DisplayON = true;
+bool SystemON = true;
 
 bool Taster1 = false;         // 3D Drucker
 bool Taster2 = false;         // Licht
@@ -92,14 +92,15 @@ bool Taster3 = false;         // Tools
 bool Taster4 = false;         // PC
 bool Taster_enco = false;
 bool Printer_done = false;
+bool alleTaster = false;
+bool allesAndere = false;
 
 bool Taster1_alt = false;
 bool Taster2_alt = false;
 bool Taster3_alt = false;
 bool Taster4_alt = false;
 bool Taster_enco_alt = false;
-bool Printer_done_alt = false;
 
-const char *M_Menu[] = {"3Dprint", "Licht", "Tools", "PC", "Heater", "Info"};
+const char *M_Menu[] = {"3Dprint", "Licht", "Tools", "PC", "Heater", "System"};
 const char *v1_Menu[] = {"ON", "OFF"};
 const char *v2_Menu[] = {"temp", "delay"};

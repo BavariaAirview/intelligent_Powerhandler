@@ -43,25 +43,34 @@ void setup() {
   lcd.print("Init");
   Relais1 = true;
   LED_INIT_SHOW();
+  lcd.setCursor(0, 0);
+  lcd.print("System is ON");
+  LED_Status();
+  LED_SET();
+  delay(1000);
 }
 //________________________________________________________________________ Main
 void loop() {
 
   input_read();
   taster();
-  logik();            //  ----------  NEXT
-
+  backlight_control();
 #ifdef debug
   debug_print();
 #endif
-  encoder_calc();
   Menu();
   Menu_Inhalt();
   LCD_OUTPUT();
-
+  temp_control();
+  LED_Status();
   LED_SET();
 
-  Relais3 = Relais2;
+  allesAndere = (licht || PC || tools);
+  if (drucker == true && licht == false &&  PC == false && tools == false) {
+    soll_temp = 12;
+    printer_ready();
+  }
+
   Relais_Output();
 
 #ifdef debug
@@ -69,11 +78,42 @@ void loop() {
 #endif
 } //__________________________________________________________end loop()
 
-void logik(){
-  
-}
 
 void debug_print() {
 
-  Serial.print("+");
+  Serial.println("");
+  Serial.print("Relais    :");
+  Serial.print(Relais1);
+  Serial.print("\t");
+  Serial.print(Relais2);
+  Serial.print("\t");
+  Serial.print(Relais3);
+  Serial.print("\t");
+  Serial.print(Relais4);
+  Serial.print("\t");
+  Serial.print(Relais5);
+  Serial.print("\t");
+  Serial.print(Relais6);
+  Serial.print("\t");
+  Serial.print(Relais7);
+  Serial.print("\t");
+  Serial.print(Relais8);
+  Serial.println("");
+  
+  Serial.print("Taster");
+  Serial.print(Taster1);
+  Serial.print("\t");
+  Serial.print(Taster2);
+  Serial.print("\t");
+  Serial.print(Taster3);
+  Serial.print("\t");
+  Serial.print(Taster4);
+  Serial.print("\t");
+  Serial.print(Taster_enco);
+  Serial.println("");
+
+  Serial.print("Menüeinstieg  :");
+  Serial.print(Menuauswahl);
+  Serial.println("");
+
 }
