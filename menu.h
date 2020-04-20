@@ -1,6 +1,8 @@
 void Menu() {
-  if ( Taster_enco && !Taster_enco_alt && DisplayON ) {
+  if ( Taster_enco && !Taster_enco_alt && DisplayON && waittime < millis() ) {
     Taster_enco_alt = true;
+    waittime = millis() + tasterdelay;
+    tone(Buzzer_pin, freq, tasterdelay);
     Menuauswahl = !Menuauswahl;
     if (courser_pos == 2 && Menuauswahl == true) {
       set_boolValue = true;
@@ -18,7 +20,7 @@ void Menu() {
   if (nMainMenu < 0) nMainMenu = 5;
   if (nMainMenu >= 6) nMainMenu = 0;
 
-  if (!Menuauswahl) {
+  if (!Menuauswahl && Taster_enco_alt && courser_pos == 1) {
     if (nMainMenu == 0) {
       boolValue = drucker;
     }
@@ -128,12 +130,12 @@ void LCD_OUTPUT() {
 
   if (courser_pos = 1) {
     lcd.setCursor(0, 0);
-    lcd.print("*");
+    lcd.print(">");
   } else if (courser_pos = 2) {
     lcd.setCursor(0, 1);
-    lcd.print("*");
+    lcd.print(">");
   } else if (courser_pos = 3) {
     lcd.setCursor(5, 1);
-    lcd.print("*");
+    lcd.print(">");
   }
 }

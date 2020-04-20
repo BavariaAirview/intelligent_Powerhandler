@@ -89,71 +89,75 @@ void Relais_Output() {
   } else {
     Relais2 = false;
   }
-  Relais3 = Relais2;
-  if (drucker) {
+  if (licht) {
+    Relais3 = true;
+  } else {
+    Relais3 = false;
+  }
+  if (tools) {
     Relais4 = true;
   } else {
     Relais4 = false;
   }
-  if (licht) {
+  if (PC) {
     Relais5 = true;
   } else {
     Relais5 = false;
   }
-  if (tools) {
+  if (drucker || PC ) {
     Relais6 = true;
   } else {
     Relais6 = false;
   }
-  if (PC) {
+    if (drucker) {
     Relais7 = true;
   } else {
     Relais7 = false;
   }
-  if (drucker || PC ) {
+    /*  if ( ??? ) {
     Relais8 = true;
   } else {
     Relais8 = false;
-  }
+  }*/
 
-  if (Relais1) {
+  if (Relais1) {                        // Netzteil / System
     digitalWrite(Relais1_pin, HIGH);
   } else {
     digitalWrite(Relais1_pin, LOW);
   }
-  if (Relais2) {
+  if (Relais2) {                        // Heizung                            Schuko 1
     digitalWrite(Relais2_pin, HIGH);
   } else {
     digitalWrite(Relais2_pin, LOW);
   }
-  if (Relais3) {
+  if (Relais3) {                        // Licht                              Schuko 2
     digitalWrite(Relais3_pin, HIGH);
   } else {
     digitalWrite(Relais3_pin, LOW);
   }
-  if (Relais4) {
+  if (Relais4) {                        // Tool Schreibtisch                  Schuko 3
     digitalWrite(Relais4_pin, HIGH);
   } else {
     digitalWrite(Relais4_pin, LOW);
   }
-  if (Relais5 == true) {
+  if (Relais5 == true) {                // PC und Display                     Schuko 4
     digitalWrite(Relais5_pin, HIGH);
   } else {
     digitalWrite(Relais5_pin, LOW);
   }
-  if (Relais6) {
+  if (Relais6) {                        // Switch und LanOverPower            Schuko 5
     digitalWrite(Relais6_pin, HIGH);
   } else {
     digitalWrite(Relais6_pin, LOW);
-  }
-  if (Relais7) {
+  }                                    
+  if (Relais7) {                        // 3D Drucker                         Schuko 6
     digitalWrite(Relais7_pin, HIGH);
   } else {
     digitalWrite(Relais7_pin, LOW);
   }
-  if (Relais8) {
+  /*if (Relais8) {                      // OFFLINE Verdrahtet mit Relais 2               
     digitalWrite(Relais8_pin, HIGH);
   } else {
     digitalWrite(Relais8_pin, LOW);
-  }
+  }*/
 }

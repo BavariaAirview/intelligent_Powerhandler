@@ -43,28 +43,32 @@ void taster() {
   if (Taster1 == true && Taster1_alt == false && waittime < millis()) {
     drucker = !drucker;
     Taster1_alt = true;
-    waittime = millis() + 500;
+    tone(Buzzer_pin, freq, tasterdelay);
+    waittime = millis() + tasterdelay;
   }
   if (!Taster1) Taster1_alt = false;
 
   if (Taster2 == true && Taster2_alt == false && waittime < millis()) {
     licht = !licht;
     Taster2_alt = true;
-    waittime = millis() + 500;
+    tone(Buzzer_pin, freq, tasterdelay);
+    waittime = millis() + tasterdelay;
   }
   if (!Taster2) Taster2_alt = false;
 
   if (Taster3 == true && Taster3_alt == false && waittime < millis()) {
     tools = !tools;
     Taster3_alt = true;
-    waittime = millis() + 500;
+    tone(Buzzer_pin, freq, tasterdelay);
+    waittime = millis() + tasterdelay;
   }
   if (!Taster3) Taster3_alt = false;
 
   if (Taster4 == true && Taster4_alt == false && waittime < millis()) {
     PC = !PC;
     Taster4_alt = true;
-    waittime = millis() + 500;
+    tone(Buzzer_pin, freq, tasterdelay);
+    waittime = millis() + tasterdelay;
   }
   if (!Taster4) Taster4_alt = false;
 }

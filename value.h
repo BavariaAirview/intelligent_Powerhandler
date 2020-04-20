@@ -3,6 +3,7 @@
 #define LED_MAX 200
 #define LED_LOW 40
 
+
 #define debug 1
 
 uint16_t temp_scaler = 100;
@@ -18,6 +19,8 @@ uint8_t delay_PC = 1;          // Minuten
 #define CHIPSET     WS2811
 #define BRIGHTNESS  200
 #define FRAMES_PER_SECOND 10
+#define tasterdelay 200
+#define freq 2000
 
 #define Relais1_pin 2
 #define Relais2_pin 3
@@ -26,7 +29,8 @@ uint8_t delay_PC = 1;          // Minuten
 #define Relais5_pin 6
 #define Relais6_pin 7
 #define Relais7_pin 8
-#define Relais8_pin 9
+//#define Relais8_pin 9
+#define Buzzer_pin 9
 
 #define LED_PIN 10
 #define NTC_pin A0

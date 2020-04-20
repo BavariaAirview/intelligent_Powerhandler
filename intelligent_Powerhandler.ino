@@ -33,7 +33,8 @@ void setup() {
   pinMode (Relais5_pin, OUTPUT);
   pinMode (Relais6_pin, OUTPUT);
   pinMode (Relais7_pin, OUTPUT);
-  pinMode (Relais8_pin, OUTPUT);
+  //pinMode (Relais8_pin, OUTPUT);
+  pinMode (Buzzer_pin, OUTPUT);
 
   attachInterrupt(encoder0PinA, doEncoderA, CHANGE);
   attachInterrupt(encoder0PinB, doEncoderB, CHANGE);

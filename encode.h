@@ -86,6 +86,7 @@ void doEncoderA() {
     }
   }
   diplaytimer = millis() + 10000;
+  tone(Buzzer_pin, freq, tasterdelay);
 }
 
 void doEncoderB() {
@@ -180,4 +181,5 @@ void doEncoderB() {
     }
   }
   diplaytimer = millis() + 10000;
+  tone(Buzzer_pin, freq, tasterdelay);
 }
