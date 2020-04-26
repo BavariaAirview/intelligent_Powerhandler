@@ -14,7 +14,7 @@ CRGB leds[NUM_LEDS];
 void setup() {
   FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
   FastLED.setBrightness( BRIGHTNESS );
-  lcd.init();
+  lcd.begin();
   lcd.backlight();
   pinMode (encoder0PinA, INPUT);
   pinMode (encoder0PinB, INPUT);
@@ -71,7 +71,19 @@ void loop() {
     soll_temp = 12;
     printer_ready();
   }
-
+  if ( reminder ) {
+    if (!timer_set) {
+      remind_counter = millis() + (remind_timer * 1000 * 60);
+      timer_set = true;
+    }
+    remind_timer = remind_counter - (millis() / 1000 / 60);
+    if (remind_timer < 5){
+      diplaytimer = millis() + 10000;
+    }
+    if (remind_timer <= 0){
+      licht = false;
+    }
+  }
   Relais_Output();
 
 #ifdef debug

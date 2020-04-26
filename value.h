@@ -44,10 +44,10 @@ uint8_t delay_PC = 1;          // Minuten
 #define encoder0PinB 12
 
 //                R G B
-uint8_t LED1[] = {0,0,0};     // 3D Drucker
-uint8_t LED2[] = {0,0,0};     // Licht
-uint8_t LED3[] = {0,0,0};     // Tools
-uint8_t LED4[] = {0,0,0};     // PC
+uint8_t LED1[] = {0, 0, 0};   // 3D Drucker
+uint8_t LED2[] = {0, 0, 0};   // Licht
+uint8_t LED3[] = {0, 0, 0};   // Tools
+uint8_t LED4[] = {0, 0, 0};   // PC
 
 bool Relais1 = false;   // Netzteil
 bool Relais2 = false;   // Heizung
@@ -72,6 +72,8 @@ long waittime = 0;
 long diplaytimer = 10000;
 long menudelay = 0;
 long printdelay = 0;
+long remind_counter = 0;
+uint8_t remind_timer = 0;
 String error = "";
 bool printprogress = false;
 
@@ -85,10 +87,11 @@ bool drucker = false;
 bool licht = true;
 bool tools = false;
 bool PC = false;
-bool Heizung = true;
+bool Heizung = false;
 bool Menuauswahl = false;
 bool DisplayON = true;
 bool SystemON = true;
+bool reminder = false;
 
 bool Taster1 = false;         // 3D Drucker
 bool Taster2 = false;         // Licht
@@ -98,6 +101,7 @@ bool Taster_enco = false;
 bool Printer_done = false;
 bool alleTaster = false;
 bool allesAndere = false;
+bool timer_set = false;
 
 bool Taster1_alt = false;
 bool Taster2_alt = false;
@@ -105,6 +109,6 @@ bool Taster3_alt = false;
 bool Taster4_alt = false;
 bool Taster_enco_alt = false;
 
-const char *M_Menu[] = {"3Dprint", "Licht", "Tools", "PC", "Heater", "System"};
+const char *M_Menu[] = {"3Dprint", "Licht", "Tools", "PC", "Heater", "System", "Remind"};
 const char *v1_Menu[] = {"ON", "OFF"};
 const char *v2_Menu[] = {"temp", "delay"};

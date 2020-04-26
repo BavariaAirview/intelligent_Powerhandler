@@ -14,11 +14,11 @@ void Menu() {
     Menuauswahl = false;
   }
 
-  if ((nMainMenu == 0 || nMainMenu == 3 || nMainMenu == 4) && courser_pos >= 4 )courser_pos = 1;
-  if ((nMainMenu == 1 || nMainMenu == 2 || nMainMenu == 5) && courser_pos >= 3 )courser_pos = 1;
+  if ((nMainMenu == 0 || nMainMenu == 3 || nMainMenu == 4 || nMainMenu == 6) && courser_pos >= 4 ) courser_pos = 1;
+  if ((nMainMenu == 1 || nMainMenu == 2 || nMainMenu == 5) && courser_pos >= 3 ) courser_pos = 1;
 
-  if (nMainMenu < 0) nMainMenu = 5;
-  if (nMainMenu >= 6) nMainMenu = 0;
+  if (nMainMenu < 0) nMainMenu = 6;
+  if (nMainMenu >= 7) nMainMenu = 0;
 
   if (!Menuauswahl && Taster_enco_alt && courser_pos == 1) {
     if (nMainMenu == 0) {
@@ -38,6 +38,9 @@ void Menu() {
     }
     else if (nMainMenu == 5) {
       boolValue == SystemON;
+    }
+    else if (nMainMenu == 5) {
+      boolValue == reminder;
     }
   }
 
@@ -66,6 +69,9 @@ void Menu() {
     else if (nMainMenu == 5) {
       SystemON = boolValue;
     }
+    else if (nMainMenu == 6) {
+      reminder = boolValue;
+    }
     set_boolValue = false;
   }
 
@@ -90,6 +96,9 @@ void Menu_Inhalt() {
     }
     else if (nMainMenu == 4) {
       numValue2 = millis() / 1000 / 60;
+    }
+    else if (nMainMenu == 6) {
+      numValue2 = remind_timer;
     }
   }
 }

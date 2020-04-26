@@ -17,7 +17,13 @@ void doEncoderA() {
             soll_temp = soll_temp + 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer++;
+            if (nMainMenu == 0) {
+              delay_printer++;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer++;
+              timer_set = false;
+            }
           }
         }
       }
@@ -36,7 +42,13 @@ void doEncoderA() {
             soll_temp = soll_temp - 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer--;
+            if (nMainMenu == 0) {
+              delay_printer--;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer--;
+              timer_set = false;
+            }
           }
         }
       }
@@ -59,7 +71,13 @@ void doEncoderA() {
             soll_temp = soll_temp + 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer++;
+            if (nMainMenu == 0) {
+              delay_printer++;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer++;
+              timer_set = false;
+            }
           }
         }
       }
@@ -79,7 +97,13 @@ void doEncoderA() {
             soll_temp = soll_temp - 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer--;
+            if (nMainMenu == 0) {
+              delay_printer--;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer--;
+              timer_set = false;
+            }
           }
         }
       }
@@ -108,7 +132,13 @@ void doEncoderB() {
             soll_temp = soll_temp + 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer++;
+            if (nMainMenu == 0) {
+              delay_printer++;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer++;
+              timer_set = false;
+            }
           }
         }
       }
@@ -128,7 +158,13 @@ void doEncoderB() {
             soll_temp = soll_temp - 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer--;
+            if (nMainMenu == 0) {
+              delay_printer--;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer--;
+              timer_set = false;
+            }
           }
         }
       }
@@ -154,7 +190,13 @@ void doEncoderB() {
             soll_temp = soll_temp + 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer++;
+            if (nMainMenu == 0) {
+              delay_printer++;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer++;
+              timer_set = false;
+            }
           }
         }
       }
@@ -174,7 +216,13 @@ void doEncoderB() {
             soll_temp = soll_temp - 0.5;
           }
           if (nValue2 = 1) {
-            delay_printer--;
+            if (nMainMenu == 0) {
+              delay_printer--;
+            }
+            else if (nMainMenu == 6) {
+              remind_timer--;
+              timer_set = false;
+            }
           }
         }
       }
