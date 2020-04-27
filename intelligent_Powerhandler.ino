@@ -14,7 +14,7 @@ CRGB leds[NUM_LEDS];
 void setup() {
   FastLED.addLeds<CHIPSET, LED_PIN, COLOR_ORDER>(leds, NUM_LEDS).setCorrection( TypicalLEDStrip );
   FastLED.setBrightness( BRIGHTNESS );
-  lcd.begin();
+  lcd.init();
   lcd.backlight();
   pinMode (encoder0PinA, INPUT);
   pinMode (encoder0PinB, INPUT);
@@ -79,6 +79,10 @@ void loop() {
     remind_timer = remind_counter - (millis() / 1000 / 60);
     if (remind_timer < 5){
       diplaytimer = millis() + 10000;
+    }
+    if (remind_timer < 5 && beepdelay < millis()) {
+      beepdelay = millis() + (15 *1000);
+      tone(Buzzer_pin, freq+1000, remindbeep);
     }
     if (remind_timer <= 0){
       licht = false;

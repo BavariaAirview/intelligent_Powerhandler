@@ -11,6 +11,8 @@ int temp_offset = 1;
 float soll_temp = 18.5;
 uint8_t delay_printer = 10;    // Minuten
 uint8_t delay_PC = 1;          // Minuten
+uint8_t remind_timer = 10;      // Minuten
+
 
 
 //_________________________________________________________________ no change below this line nessasary
@@ -20,6 +22,7 @@ uint8_t delay_PC = 1;          // Minuten
 #define BRIGHTNESS  200
 #define FRAMES_PER_SECOND 10
 #define tasterdelay 200
+#define remindbeep 100
 #define freq 2000
 
 #define Relais1_pin 2
@@ -72,8 +75,8 @@ long waittime = 0;
 long diplaytimer = 10000;
 long menudelay = 0;
 long printdelay = 0;
+long beepdelay = 0;
 long remind_counter = 0;
-uint8_t remind_timer = 0;
 String error = "";
 bool printprogress = false;
 

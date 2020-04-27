@@ -80,7 +80,7 @@ void Menu() {
 void Menu_Inhalt() {
   MainMenu = M_Menu[nMainMenu];
   Value1 = v1_Menu[nValue1];
-  Value2 = v1_Menu[nValue2];
+  Value2 = v2_Menu[nValue2];
   if (nValue2 == 0) {
     numValue2 = 0;
   }
