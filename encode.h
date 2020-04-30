@@ -13,10 +13,10 @@ void doEncoderA() {
         } else if (courser_pos == 2) {
           boolValue = !boolValue;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 1) {
             soll_temp = soll_temp + 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 2) {
             if (nMainMenu == 0) {
               delay_printer++;
             }
@@ -38,15 +38,17 @@ void doEncoderA() {
         } else if (courser_pos == 2) {
           boolValue = !boolValue;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 1) {
             soll_temp = soll_temp - 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 2) {
             if (nMainMenu == 0) {
               delay_printer--;
+              if (delay_printer <= 1) delay_printer = 1;
             }
             else if (nMainMenu == 6) {
               remind_timer--;
+              if (remind_timer <= 1) remind_timer = 1;
               timer_set = false;
             }
           }
@@ -67,10 +69,10 @@ void doEncoderA() {
         } else if (courser_pos == 2) {
           boolValue = !boolValue;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 1) {
             soll_temp = soll_temp + 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 2) {
             if (nMainMenu == 0) {
               delay_printer++;
             }
@@ -93,15 +95,17 @@ void doEncoderA() {
         } else if (courser_pos == 2) {
           boolValue = !boolValue;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 1) {
             soll_temp = soll_temp - 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 2) {
             if (nMainMenu == 0) {
               delay_printer--;
+              if (delay_printer <= 1) delay_printer = 1;
             }
             else if (nMainMenu == 6) {
               remind_timer--;
+              if (remind_timer <= 1) remind_timer = 1;
               timer_set = false;
             }
           }
@@ -128,10 +132,10 @@ void doEncoderB() {
         } else if (courser_pos == 2) {
           boolValue = !boolValue;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 1) {
             soll_temp = soll_temp + 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 2) {
             if (nMainMenu == 0) {
               delay_printer++;
             }
@@ -154,15 +158,17 @@ void doEncoderB() {
         } else if (courser_pos == 2) {
           boolValue = !boolValue;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 1) {
             soll_temp = soll_temp - 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 2) {
             if (nMainMenu == 0) {
               delay_printer--;
+              if (delay_printer <= 1) delay_printer = 1;
             }
             else if (nMainMenu == 6) {
               remind_timer--;
+              if (remind_timer <= 1) remind_timer = 1;
               timer_set = false;
             }
           }
@@ -186,10 +192,10 @@ void doEncoderB() {
         } else if (courser_pos == 2) {
           nValue1++;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 0) {
             soll_temp = soll_temp + 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 1) {
             if (nMainMenu == 0) {
               delay_printer++;
             }
@@ -212,15 +218,17 @@ void doEncoderB() {
         } else if (courser_pos == 2) {
           nValue1--;
         } else if (courser_pos == 3) {
-          if (nValue2 = 0) {
+          if (nValue2 == 0) {
             soll_temp = soll_temp - 0.5;
           }
-          if (nValue2 = 1) {
+          if (nValue2 == 1) {
             if (nMainMenu == 0) {
               delay_printer--;
+              if (delay_printer <= 1) delay_printer = 1;
             }
             else if (nMainMenu == 6) {
               remind_timer--;
+              if (remind_timer <= 1) remind_timer = 1;
               timer_set = false;
             }
           }

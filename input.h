@@ -1,42 +1,53 @@
 void input_read() {
 
-  NTC = analogRead(NTC_pin) * 100 / 4095;
-  NTC_lowpass[i] = NTC;
-  i++;
-  if (i > NUM_FILTER) i = 1;
-  NTC = 0;
-  for (int j; j >= NUM_FILTER; j++) {
-    NTC = NTC + NTC_lowpass[j];
-  }
-  NTC = NTC / NUM_FILTER;
-  temp = (NTC / 100 * temp_scaler) + temp_offset ;
+  NTC = analogRead(NTC_pin);
+  NTC_OHM = 3300*(((double)NTC/1024)/(1-((double)NTC/1024)));
+  TKelvin = 1/((1/((double)273.15+25))+((double)1/3950)*log((double)NTC_OHM/2500));
+  temp = TKelvin - 273.15;
 
-  Taster1 = digitalRead(Taster1_pin);
+  Taster1ana = analogRead(Taster1_pin);
   Taster2 = digitalRead(Taster2_pin);
   Taster3 = digitalRead(Taster3_pin);
   Taster4 = digitalRead(Taster4_pin);
   Taster_enco = digitalRead(Taster_enco_pin);
-  Printer_done = digitalRead(Printer_Bed_pin);
+  Printer_done_ana = analogRead(Printer_Bed_pin);
   alleTaster = ( Taster1 || Taster2 || Taster3 || Taster4 || Taster_enco);
+
+  if (Taster1ana >= 100) {
+    Taster1 = true;
+  }
+  else {
+    Taster1 = false;
+  }
+  if (Printer_done_ana >= 100) {
+    Printer_done = true;
+  }
+  else {
+    Printer_done = false;
+  }
 
   if (!Printer_done && !printprogress ) printprogress = true;
 }
 
 void temp_control() {
-  if (temp < soll_temp - 0.5 && ( NTC_lowpass[NUM_FILTER - 1] != 0 ) ) {
-    Heizung = true;
+  if (Heizung && temp < soll_temp - 0.5) {
+    Heizung_relais = true;
   }
-  if (temp > soll_temp + 0.5) {
-    Heizung = false;
+  if (temp > soll_temp + 0.5 || Heizung == false) {
+    Heizung_relais = false;
   }
 }
 
 void printer_ready() {
   if (printprogress == true && Printer_done == true && printdelay == 0) {
-    printdelay = millis() + (delay_printer * 60 * 60 * 1000);
+    printdelay = (millis()/1000/60) + delay_printer;
+    printwait = true;
   }
-  if (printdelay < millis && allesAndere == false) SystemON = false;
-  if (allesAndere == true) printdelay = 0;
+  if (printdelay < (millis()/1000/60) && allesAndere == false) SystemON = false;
+  if (allesAndere == true) {
+    printdelay = 0;
+    printwait = false;
+  }
 }
 
 void taster() {

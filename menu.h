@@ -14,33 +14,45 @@ void Menu() {
     Menuauswahl = false;
   }
 
-  if ((nMainMenu == 0 || nMainMenu == 3 || nMainMenu == 4 || nMainMenu == 6) && courser_pos >= 4 ) courser_pos = 1;
-  if ((nMainMenu == 1 || nMainMenu == 2 || nMainMenu == 5) && courser_pos >= 3 ) courser_pos = 1;
+  if ((nMainMenu == 0 || nMainMenu == 4 || nMainMenu == 6) && courser_pos >= 4 ) courser_pos = 1;
+  if ((nMainMenu == 1 || nMainMenu == 3 || nMainMenu == 2 || nMainMenu == 5) && courser_pos >= 3 ) courser_pos = 1;
+  if ((nMainMenu == 0 || nMainMenu == 4 || nMainMenu == 6) && courser_pos <= 0 ) courser_pos = 3;
+  if ((nMainMenu == 1 || nMainMenu == 3 || nMainMenu == 2 || nMainMenu == 5) && courser_pos <= 0 ) courser_pos = 2;
 
   if (nMainMenu < 0) nMainMenu = 6;
   if (nMainMenu >= 7) nMainMenu = 0;
 
-  if (!Menuauswahl && Taster_enco_alt && courser_pos == 1) {
+  if (nValue1 < 0) nValue1 = 1;
+  if (nValue1 >= 2) nValue1 = 0;
+
+  if (Menuauswahl && courser_pos == 1) {
     if (nMainMenu == 0) {
       boolValue = drucker;
+      nValue2 = 2;
     }
     else if (nMainMenu == 1) {
       boolValue = licht;
+      nValue2 = 0;
     }
     else if (nMainMenu == 2) {
       boolValue = tools;
+      nValue2 = 0;
     }
     else if (nMainMenu == 3) {
       boolValue = PC;
+      nValue2 = 0;
     }
     else if (nMainMenu == 4) {
       boolValue = Heizung;
+      nValue2 = 1;
     }
     else if (nMainMenu == 5) {
       boolValue == SystemON;
+      nValue2 = 0;
     }
-    else if (nMainMenu == 5) {
+    else if (nMainMenu == 6) {
       boolValue == reminder;
+      nValue2 = 2;
     }
   }
 
@@ -78,9 +90,21 @@ void Menu() {
 }
 
 void Menu_Inhalt() {
-  MainMenu = M_Menu[nMainMenu];
-  Value1 = v1_Menu[nValue1];
-  Value2 = v2_Menu[nValue2];
+
+  if (nMainMenu == 0) M_Menu = "3Dprint";
+  if (nMainMenu == 1) M_Menu = "Licht  ";
+  if (nMainMenu == 2) M_Menu = "Tools  ";
+  if (nMainMenu == 3) M_Menu = "PC     ";
+  if (nMainMenu == 4) M_Menu = "Heater ";
+  if (nMainMenu == 5) M_Menu = "System ";
+  if (nMainMenu == 6) M_Menu = "Remind ";
+
+  if (nValue1 == 0) v1_Menu = "OFF";
+  if (nValue1 == 1) v1_Menu = "ON ";
+
+  if (nValue2 == 1) v2_Menu = "temp  ";
+  if (nValue2 == 2) v2_Menu = "delay ";
+
   if (nValue2 == 0) {
     numValue2 = 0;
   }
@@ -91,12 +115,6 @@ void Menu_Inhalt() {
     if (nMainMenu == 0) {
       numValue2 = delay_printer;
     }
-    else if (nMainMenu == 3) {
-      numValue2 = delay_PC;
-    }
-    else if (nMainMenu == 4) {
-      numValue2 = millis() / 1000 / 60;
-    }
     else if (nMainMenu == 6) {
       numValue2 = remind_timer;
     }
@@ -105,7 +123,7 @@ void Menu_Inhalt() {
 
 void backlight_control() {
   if (Taster_enco || Taster1 || Taster2 || Taster3 || Taster4 ) {
-    diplaytimer = millis() + 10000;
+    diplaytimer = millis() + 15000;
   }
   if (diplaytimer > millis()) {
     DisplayON = true;
@@ -117,34 +135,58 @@ void backlight_control() {
 }
 
 void LCD_OUTPUT() {
-  lcd.clear();
+  //lcd.clear();
   lcd.setCursor(1, 0);
-  lcd.print(MainMenu);
-  lcd.setCursor(8, 0);
-  lcd.print("ist");
-  lcd.setCursor(11, 0);
-  lcd.print(temp);
+  lcd.print(M_Menu);
+  lcd.setCursor(10, 0);
+  lcd.print(temp, 1);
   lcd.setCursor(15, 0);
-  lcd.print("°");
+  lcd.print((char)223);
 
   lcd.setCursor(1, 1);
-  lcd.print(Value1);
+  lcd.print(v1_Menu);
 
   if (nValue2 != 0) {
     lcd.setCursor(6, 1);
-    lcd.print(Value2);
-    lcd.setCursor(11, 1);
-    lcd.print(numValue2);
+    lcd.print(v2_Menu);
+    lcd.setCursor(12, 1);
+    lcd.print(numValue2, 1);
+  } else {
+    lcd.setCursor(6, 1);
+    lcd.print("            ");
   }
 
-  if (courser_pos = 1) {
+  if (courser_pos == 1) {
     lcd.setCursor(0, 0);
-    lcd.print(">");
-  } else if (courser_pos = 2) {
+    if (Menuauswahl == false) {
+      lcd.print(">");
+    } else {
+      lcd.print("*");
+    }
+  } else {
+    lcd.setCursor(0, 0);
+    lcd.print(" ");
+  }
+  if (courser_pos == 2) {
     lcd.setCursor(0, 1);
-    lcd.print(">");
-  } else if (courser_pos = 3) {
+    if (Menuauswahl == false) {
+      lcd.print(">");
+    } else {
+      lcd.print("*");
+    }
+  } else {
+    lcd.setCursor(0, 1);
+    lcd.print(" ");
+  }
+  if (courser_pos == 3) {
     lcd.setCursor(5, 1);
-    lcd.print(">");
+    if (Menuauswahl == false) {
+      lcd.print(">");
+    } else {
+      lcd.print("*");
+    }
+  } else {
+    lcd.setCursor(5, 1);
+    lcd.print(" ");
   }
 }
