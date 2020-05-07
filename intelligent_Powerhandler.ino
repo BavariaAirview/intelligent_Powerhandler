@@ -37,7 +37,7 @@ void setup() {
   pinMode (Buzzer_pin, OUTPUT);
 
   attachInterrupt(0, doEncoderA, CHANGE);
-  //attachInterrupt(1, doEncoderB, CHANGE);
+  attachInterrupt(1, doEncoderB, CHANGE);
 
   remind_timer_alt = remind_timer;
 
