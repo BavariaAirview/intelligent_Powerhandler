@@ -26,7 +26,9 @@ void input_read() {
     Printer_done = false;
   }
 
-  if (!Printer_done && !printprogress ) printprogress = true;
+  if (Printer_done == false && printprogress == false) {
+    printprogress = true;
+  }
 }
 
 void temp_control() {
@@ -39,11 +41,13 @@ void temp_control() {
 }
 
 void printer_ready() {
-  if (printprogress == true && Printer_done == true && printdelay == 0) {
+  if (printprogress == true && Printer_done == true && printwait == false) {
     printdelay = (millis()/1000/60) + delay_printer;
     printwait = true;
   }
-  if (printdelay < (millis()/1000/60) && allesAndere == false) SystemON = false;
+  if (printdelay >= (millis()/1000/60) && allesAndere == false &&  printwait == true) {
+    SystemON = false;
+  }  
   if (allesAndere == true) {
     printdelay = 0;
     printwait = false;

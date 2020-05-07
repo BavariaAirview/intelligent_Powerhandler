@@ -37,7 +37,7 @@ void setup() {
   pinMode (Buzzer_pin, OUTPUT);
 
   attachInterrupt(0, doEncoderA, CHANGE);
-  attachInterrupt(1, doEncoderB, CHANGE);
+  //attachInterrupt(1, doEncoderB, CHANGE);
 
   remind_timer_alt = remind_timer;
 
@@ -58,9 +58,9 @@ void setup() {
 }
 //________________________________________________________________________ Main
 void loop() {
-  #ifdef debug
+#ifdef debug
   cycletime = millis();
-  #endif
+#endif
   input_read();
   taster();
   backlight_control();
@@ -72,25 +72,25 @@ void loop() {
   LED_SET();
 
   allesAndere = (licht || PC || tools);
+  
   if (drucker && !licht &&  !PC && !tools) {
     soll_temp = 12;
     printer_ready();
   }
 
-  AllOff = (!licht && !PC && !tools && !drucker);
+  AllOff = (!licht && !PC && !tools && !drucker && !Heizung);
 
-  if (AllOff) {
+  if ( AllOff ) {
     if (!timer_set) {
       reminder = false;
       timer_set = true;
       remind_counter = (millis() / 1000 / 60) + 1;
     }
-    if (remind_counter < ((millis() / 1000 / 60) + 1) && timer_set) SystemON = false;
-  } else {
-    timer_set = false;
-  }
 
-  if ( reminder ) {
+    if (remind_counter < ((millis() / 1000 / 60) + 1) && timer_set) {
+      SystemON = false;
+    }
+  } else if ( reminder ) {
     if (!timer_set) {
       remind_counter = (millis() / 1000 / 60) + remind_timer;
       remind_timer_alt = remind_timer;
@@ -108,7 +108,10 @@ void loop() {
       licht = false;
       reminder = false;
     }
+  } else {
+    timer_set = false;
   }
+
   if (SystemON == false) {
     drucker = false;
     licht = false;
@@ -128,7 +131,7 @@ void loop() {
 #endif
 } //__________________________________________________________end loop()
 
-
+#ifdef debug
 void debug_print() {
   Serial.println("");
 
@@ -211,6 +214,7 @@ void debug_print() {
     Serial.println("");
   }
   Serial.print(millis() - cycletime);
-  
+
   Serial.println("");
 }
+#endif

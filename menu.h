@@ -47,11 +47,11 @@ void Menu() {
       nValue2 = 1;
     }
     else if (nMainMenu == 5) {
-      boolValue == SystemON;
+      boolValue = SystemON;
       nValue2 = 0;
     }
     else if (nMainMenu == 6) {
-      boolValue == reminder;
+      boolValue = reminder;
       nValue2 = 2;
     }
   }
