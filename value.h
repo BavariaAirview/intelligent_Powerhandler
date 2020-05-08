@@ -3,8 +3,8 @@
 
 uint16_t temp_scaler = 110;
 int temp_offset = 60;
-float soll_temp = 18.5;
-uint8_t delay_printer = 15;    // Minuten
+float soll_temp = 17.0;
+uint8_t delay_printer = 40;    // Minuten
 uint8_t delay_PC = 1;          // Minuten
 int8_t remind_timer = 30;      // Minuten
 
