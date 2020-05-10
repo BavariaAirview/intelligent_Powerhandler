@@ -52,6 +52,9 @@ void printer_ready() {
     printdelay = 0;
     printwait = false;
   }
+  if (allesAndere && Printer_done){
+    printprogress == false;
+  }
 }
 
 void taster() {
