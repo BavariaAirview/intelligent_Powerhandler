@@ -14,10 +14,10 @@ void Menu() {
     Menuauswahl = false;
   }
 
-  if ((nMainMenu == 0 || nMainMenu == 4 || nMainMenu == 6) && courser_pos >= 4 ) courser_pos = 1;
-  if ((nMainMenu == 1 || nMainMenu == 3 || nMainMenu == 2 || nMainMenu == 5) && courser_pos >= 3 ) courser_pos = 1;
-  if ((nMainMenu == 0 || nMainMenu == 4 || nMainMenu == 6) && courser_pos <= 0 ) courser_pos = 3;
-  if ((nMainMenu == 1 || nMainMenu == 3 || nMainMenu == 2 || nMainMenu == 5) && courser_pos <= 0 ) courser_pos = 2;
+  if ((nMainMenu == 0 || nMainMenu == 4 || nMainMenu == 6) && courser_pos >= 4 ) courser_pos = 4;
+  if ((nMainMenu == 1 || nMainMenu == 3 || nMainMenu == 2 || nMainMenu == 5) && courser_pos >= 3 ) courser_pos = 3;
+  if ((nMainMenu == 0 || nMainMenu == 4 || nMainMenu == 6) && courser_pos <= 0 ) courser_pos = 1;
+  if ((nMainMenu == 1 || nMainMenu == 3 || nMainMenu == 2 || nMainMenu == 5) && courser_pos <= 0 ) courser_pos = 1;
 
   if (nMainMenu < 0) nMainMenu = 6;
   if (nMainMenu >= 7) nMainMenu = 0;
