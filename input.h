@@ -41,20 +41,13 @@ void temp_control() {
 }
 
 void printer_ready() {
-  if (printprogress == true && Printer_done == true && printwait == false) {
-    printdelay = (millis()/1000/60) + delay_printer;
+  if (printprogress == true && Printer_done == true && printwait == false && allesAndere == false) {
+    printdelay = Minuten + delay_printer;
     printwait = true;
   }
-  if (printdelay >= (millis()/1000/60) && allesAndere == false &&  printwait == true) {
+  if (printdelay <= Minuten && printdelay != 0 && printprogress == true && allesAndere == false &&  printwait == true) {
     SystemON = false;
   }  
-  if (allesAndere == true) {
-    printdelay = 0;
-    printwait = false;
-  }
-  if (allesAndere && Printer_done){
-    printprogress == false;
-  }
 }
 
 void taster() {

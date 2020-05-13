@@ -64,6 +64,7 @@ bool aus = false;
 int8_t courser_pos = 1;         // 1 = Hauptmenüpunkt, 2 = Value1, 3 = Value2
 int8_t nMainMenu = 0;
 int8_t nValue1 = 0;
+uint16_t Minuten = 0;
 bool boolValue = false;
 bool set_boolValue = false;
 int8_t nValue2 = 2;

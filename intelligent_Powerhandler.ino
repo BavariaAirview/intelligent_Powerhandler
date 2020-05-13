@@ -61,6 +61,7 @@ void loop() {
 #ifdef debug
   cycletime = millis();
 #endif
+  Minuten = millis() / 1000 / 60;
   input_read();
   taster();
   backlight_control();
@@ -72,10 +73,16 @@ void loop() {
   LED_SET();
 
   allesAndere = (licht || PC || tools);
-  
-  if (drucker && !licht &&  !PC && !tools) {
+
+  if (drucker && !allesAndere) {
     soll_temp = 12;
     printer_ready();
+  } else {
+      printdelay = 0;
+      printwait = false;
+    if (Printer_done) {
+      printprogress == false;
+    }
   }
 
   AllOff = (!licht && !PC && !tools && !drucker && !Heizung);
@@ -84,19 +91,19 @@ void loop() {
     if (!timer_set) {
       reminder = false;
       timer_set = true;
-      remind_counter = (millis() / 1000 / 60) + 1;
+      remind_counter = Minuten + 1;
     }
 
-    if (remind_counter < ((millis() / 1000 / 60) + 1) && timer_set) {
+    if (remind_counter < (Minuten + 1) && timer_set) {
       SystemON = false;
     }
   } else if ( reminder ) {
     if (!timer_set) {
-      remind_counter = (millis() / 1000 / 60) + remind_timer;
+      remind_counter = Minuten + remind_timer;
       remind_timer_alt = remind_timer;
       timer_set = true;
     }
-    remind_timer = remind_counter - (millis() / 1000 / 60);
+    remind_timer = remind_counter - Minuten;
     if (remind_timer < 5) {
       diplaytimer = millis() + 10000;
     }
