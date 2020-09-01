@@ -1,5 +1,5 @@
 
-//#define debug 1
+#define debug 1
 
 uint16_t temp_scaler = 110;
 int temp_offset = 60;

@@ -123,7 +123,7 @@ void Menu_Inhalt() {
 
 void backlight_control() {
   if (Taster_enco || Taster1 || Taster2 || Taster3 || Taster4 ) {
-    diplaytimer = millis() + 15000;
+    diplaytimer = millis() + 10000;
   }
   if (diplaytimer > millis()) {
     DisplayON = true;

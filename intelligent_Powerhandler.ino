@@ -8,6 +8,7 @@ CRGB leds[NUM_LEDS];
 #include "encode.h"
 #include "menu.h"
 #include "input.h"
+#include "debug.h"
 
 
 
@@ -37,7 +38,7 @@ void setup() {
   pinMode (Buzzer_pin, OUTPUT);
 
   attachInterrupt(0, doEncoderA, CHANGE);
-  attachInterrupt(1, doEncoderB, CHANGE);
+  //  attachInterrupt(1, doEncoderB, CHANGE);
 
   remind_timer_alt = remind_timer;
 
@@ -56,6 +57,8 @@ void setup() {
 #endif
   lcd.clear();
 }
+
+
 //________________________________________________________________________ Main
 void loop() {
 #ifdef debug
@@ -78,25 +81,19 @@ void loop() {
     soll_temp = 12;
     printer_ready();
   } else {
-      printdelay = 0;
-      printwait = false;
+    printdelay = 0;
+    printwait = false;
     if (Printer_done) {
       printprogress == false;
     }
   }
 
-  AllOff = (!licht && !PC && !tools && !drucker && !Heizung);
+  AllOff = (!licht && !PC && !tools && !drucker);
 
   if ( AllOff ) {
-    if (!timer_set) {
-      reminder = false;
-      timer_set = true;
-      remind_counter = Minuten + 1;
-    }
 
-    if (remind_counter < (Minuten + 1) && timer_set) {
-      SystemON = false;
-    }
+    SystemON = false;
+
   } else if ( reminder ) {
     if (!timer_set) {
       remind_counter = Minuten + remind_timer;
@@ -127,8 +124,7 @@ void loop() {
     Heizung = false;
     Heizung_relais = false;
     Menuauswahl = false;
-    DisplayON = false;
-    SystemON = false;
+    DisplayON = true;
     reminder = false;
   }
   Relais_Output();
@@ -137,91 +133,3 @@ void loop() {
   debug_print();
 #endif
 } //__________________________________________________________end loop()
-
-#ifdef debug
-void debug_print() {
-  Serial.println("");
-
-  Serial.print("\t");
-  Serial.print("Netzteil");
-  Serial.print("\t");
-  Serial.print("Heizung");
-  Serial.print("\t");
-  Serial.print("\t");
-  Serial.print("not used");
-  Serial.print("\t");
-  Serial.print("3DDruck");
-  Serial.print("\t");
-  Serial.print("\t");
-  Serial.print("Licht");
-  Serial.print("\t");
-  Serial.print("Tools");
-  Serial.print("\t");
-  Serial.print("PC");
-  Serial.print("\t");
-  Serial.print("Netzwerk");
-  Serial.println("");
-
-  Serial.print("\t");
-  Serial.print(Relais1);
-  Serial.print("\t");
-  Serial.print("\t");
-  Serial.print(Relais2);
-  Serial.print("\t");
-  Serial.print("\t");
-  Serial.print(Relais3);
-  Serial.print("\t");
-  Serial.print("\t");
-  Serial.print(Relais4);
-  Serial.print("\t");
-  Serial.print("\t");
-  Serial.print(Relais5);
-  Serial.print("\t");
-  Serial.print(Relais6);
-  Serial.print("\t");
-  Serial.print(Relais7);
-  Serial.print("\t");
-  Serial.print(Relais8);
-  Serial.println("");
-
-  Serial.println("");
-
-  Serial.print("Courser  :");
-  Serial.print(courser_pos);
-  Serial.println("");
-
-  Serial.print("nMainMenu  :");
-  Serial.print(nMainMenu);
-  Serial.println("");
-
-  Serial.print("nValue2  :");
-  Serial.print(nValue2);
-  Serial.println("");
-
-  Serial.print("Menüeinstieg  :");
-  Serial.print(Menuauswahl);
-  Serial.println("");
-
-  Serial.print("Temp eingang  :");
-  Serial.print("\t");
-  Serial.print(temp, 1);
-  Serial.println("");
-
-  if (printprogress && Printer_done) {
-    Serial.print("Drucker shutdown :");
-    Serial.print(printdelay - (millis() / 1000 / 60));
-    Serial.println("");
-  }
-
-  if (reminder || AllOff) {
-    Serial.print("Remindtimer :");
-    Serial.print(remind_timer);
-    Serial.print("\t");
-    Serial.print(remind_timer_alt);
-    Serial.println("");
-  }
-  Serial.print(millis() - cycletime);
-
-  Serial.println("");
-}
-#endif
