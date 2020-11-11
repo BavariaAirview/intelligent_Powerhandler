@@ -1,5 +1,10 @@
-#include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+#include <Wire.h>
+#include <WiFi.h>
+#include <SPIFFS.h>
+#include <ESPAsyncWebServer.h>
+#include <WebSocketsServer.h>
+
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 #include "value.h"
 #include <FastLED.h>
