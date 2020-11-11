@@ -1,1 +1,0 @@
-The DataSheet of IC.
