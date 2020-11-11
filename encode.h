@@ -114,11 +114,13 @@ void doEncoderA() {
     }
   }
   diplaytimer = millis() + 10000;
-  tone(Buzzer_pin, freq, tasterdelay);
+  ledcWriteTone(channel, freq);
+  delay(Beeptime);
+  ledcWriteTone(channel, 0);
 }
 
 /*
-void doEncoderB() {
+  void doEncoderB() {
   // look for a low-to-high on channel B
   if (digitalRead(encoder0PinB) == HIGH) {
 
@@ -238,6 +240,8 @@ void doEncoderB() {
     }
   }
   diplaytimer = millis() + 10000;
-  tone(Buzzer_pin, freq, tasterdelay);
-}
+      ledcWriteTone(channel, freq);
+      delay(Beeptime);
+      ledcWriteTone(channel, 0);
+  }
 */

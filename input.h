@@ -1,8 +1,8 @@
 void input_read() {
 
   NTC = analogRead(NTC_pin);
-  NTC_OHM = 3300*(((double)NTC/1024)/(1-((double)NTC/1024)));
-  TKelvin = 1/((1/((double)273.15+25))+((double)1/3950)*log((double)NTC_OHM/2500));
+  NTC_OHM = 3300 * (((double)NTC / 1024) / (1 - ((double)NTC / 1024)));
+  TKelvin = 1 / ((1 / ((double)273.15 + 25)) + ((double)1 / 3950) * log((double)NTC_OHM / 2500));
   temp = TKelvin - 273.15;
 
   Taster1ana = analogRead(Taster1_pin);
@@ -47,14 +47,16 @@ void printer_ready() {
   }
   if (printdelay <= Minuten && printdelay != 0 && printprogress == true && allesAndere == false &&  printwait == true) {
     SystemON = false;
-  }  
+  }
 }
 
 void taster() {
   if (Taster1 == true && Taster1_alt == false && waittime < millis()) {
     drucker = !drucker;
     Taster1_alt = true;
-    tone(Buzzer_pin, freq, tasterdelay);
+    ledcWriteTone(channel, freq);
+    delay(Beeptime);
+    ledcWriteTone(channel, 0);
     waittime = millis() + tasterdelay;
   }
   if (!Taster1) Taster1_alt = false;
@@ -62,7 +64,9 @@ void taster() {
   if (Taster2 == true && Taster2_alt == false && waittime < millis()) {
     licht = !licht;
     Taster2_alt = true;
-    tone(Buzzer_pin, freq, tasterdelay);
+    ledcWriteTone(channel, freq);
+    delay(Beeptime);
+    ledcWriteTone(channel, 0);
     waittime = millis() + tasterdelay;
   }
   if (!Taster2) Taster2_alt = false;
@@ -70,7 +74,9 @@ void taster() {
   if (Taster3 == true && Taster3_alt == false && waittime < millis()) {
     tools = !tools;
     Taster3_alt = true;
-    tone(Buzzer_pin, freq, tasterdelay);
+    ledcWriteTone(channel, freq);
+    delay(Beeptime);
+    ledcWriteTone(channel, 0);
     waittime = millis() + tasterdelay;
   }
   if (!Taster3) Taster3_alt = false;
@@ -78,7 +84,9 @@ void taster() {
   if (Taster4 == true && Taster4_alt == false && waittime < millis()) {
     PC = !PC;
     Taster4_alt = true;
-    tone(Buzzer_pin, freq, tasterdelay);
+    ledcWriteTone(channel, freq);
+    delay(Beeptime);
+    ledcWriteTone(channel, 0);
     waittime = millis() + tasterdelay;
   }
   if (!Taster4) Taster4_alt = false;

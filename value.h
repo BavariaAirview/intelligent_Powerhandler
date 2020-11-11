@@ -22,27 +22,28 @@ int8_t remind_timer = 30;      // Minuten
 #define tasterdelay 200
 #define remindbeep 100
 #define freq 2000
+#define Beeptime 80
 
-#define Relais1_pin 5
-#define Relais2_pin 6
-//#define Relais3_pin 9
-#define Relais4_pin 7
-#define Relais5_pin 8
-#define Relais6_pin 10
-#define Relais7_pin 11
-#define Relais8_pin 12
-#define Buzzer_pin 9
+#define Relais1_pin 26
+#define Relais2_pin 25
+#define Relais3_pin 33
+#define Relais4_pin 32
+#define Relais5_pin 35
+#define Relais6_pin 34
+#define Relais7_pin 39
+#define Relais8_pin 38
+#define Buzzer_pin 27
 
-#define LED_PIN 4
-#define NTC_pin A0
-#define Printer_Bed_pin A7
-#define Taster1_pin A6
-#define Taster2_pin A3
-#define Taster3_pin A2
-#define Taster4_pin A1
-#define Taster_enco_pin 13
-#define encoder0PinA 2
-#define encoder0PinB 3
+#define LED_PIN 15
+#define NTC_pin 10
+#define Printer_Bed_pin 14
+#define Taster1_pin 2
+#define Taster2_pin 0
+#define Taster3_pin 4
+#define Taster4_pin 16
+#define Taster_enco_pin 17
+#define encoder0PinA 5
+#define encoder0PinB 18
 
 //                R G B
 uint8_t LED1[] = {0, 0, 0};   // 3D Drucker
@@ -69,7 +70,6 @@ bool boolValue = false;
 bool set_boolValue = false;
 int8_t nValue2 = 2;
 float numValue2 = 0;
-char MainMenu = "";
 long waittime = 0;
 long diplaytimer = 10000;
 long menudelay = 0;
@@ -80,6 +80,9 @@ long remind_timer_alt = 0;
 long cycletime = 0;
 String error = "";
 bool printprogress = false;
+
+int channel = 0;
+int resolution = 8;
 
 uint16_t NTC = 0;
 float temp = 0;

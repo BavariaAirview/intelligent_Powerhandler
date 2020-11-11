@@ -2,7 +2,9 @@ void Menu() {
   if ( Taster_enco && !Taster_enco_alt && DisplayON && waittime < millis() ) {
     Taster_enco_alt = true;
     waittime = millis() + tasterdelay;
-    tone(Buzzer_pin, freq, tasterdelay);
+    ledcWriteTone(channel, freq);
+    delay(Beeptime);
+    ledcWriteTone(channel, 0);
     Menuauswahl = !Menuauswahl;
     if (courser_pos == 2 && Menuauswahl == true) {
       set_boolValue = true;

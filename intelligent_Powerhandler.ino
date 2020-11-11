@@ -56,6 +56,9 @@ void setup() {
   Serial.begin(115200);
 #endif
   lcd.clear();
+
+  ledcSetup(channel, freq, resolution);
+  ledcAttachPin(Buzzer_pin, channel);
 }
 
 
@@ -106,7 +109,9 @@ void loop() {
     }
     if (remind_timer < 5 && beepdelay < millis()) {
       beepdelay = millis() + (30 * 1000);
-      tone(Buzzer_pin, freq + 2000, remindbeep);
+      ledcWriteTone(channel, freq);
+      delay(Beeptime);
+      ledcWriteTone(channel, 0);
     }
     if (remind_timer <= 0) {
       licht = false;
