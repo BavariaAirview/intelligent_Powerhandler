@@ -6,7 +6,8 @@
 #include <WebSocketsServer.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-#include "value.h"
+#include "Constants"
+#include "Variables.h"
 #include <FastLED.h>
 CRGB leds[NUM_LEDS];
 #include "Output.h"
