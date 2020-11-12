@@ -5,26 +5,13 @@ void input_read() {
   TKelvin = 1 / ((1 / ((double)273.15 + 25)) + ((double)1 / 3950) * log((double)NTC_OHM / 2500));
   temp = TKelvin - 273.15;
 
-  Taster1ana = analogRead(Taster1_pin);
+  Taster1 = digitalRead(Taster1_pin);
   Taster2 = digitalRead(Taster2_pin);
   Taster3 = digitalRead(Taster3_pin);
   Taster4 = digitalRead(Taster4_pin);
   Taster_enco = digitalRead(Taster_enco_pin);
-  Printer_done_ana = analogRead(Printer_Bed_pin);
+  Printer_done = digitalRead(Printer_Bed_pin);
   alleTaster = ( Taster1 || Taster2 || Taster3 || Taster4 || Taster_enco);
-
-  if (Taster1ana >= 100) {
-    Taster1 = true;
-  }
-  else {
-    Taster1 = false;
-  }
-  if (Printer_done_ana >= 100) {
-    Printer_done = true;
-  }
-  else {
-    Printer_done = false;
-  }
 
   if (Printer_done == false && printprogress == false) {
     printprogress = true;

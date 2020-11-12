@@ -62,13 +62,12 @@ bool licht = true;
 bool tools = false;
 bool PC = false;
 bool Heizung = false;
+
 bool Heizung_relais = false;
 bool Menuauswahl = false;
 bool DisplayON = true;
 bool SystemON = true;
 bool reminder = false;
-uint8_t Taster1ana = 0;
-uint8_t Printer_done_ana = 0;
 
 bool Taster1 = false;         // 3D Drucker
 bool Taster2 = false;         // Licht
@@ -99,7 +98,9 @@ AsyncWebServer server(80);
 WebSocketsServer webSocket = WebSocketsServer(1337);
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 char msg_buf[10];
-int led_state = 0;
+
+uint16_t stSystem = 0;
+
 uint8_t missconnectcounter = 0;
 IPAddress myip;
 IPAddress CLip;

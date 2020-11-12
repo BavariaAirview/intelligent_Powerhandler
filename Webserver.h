@@ -26,13 +26,35 @@ void onWebSocketEvent(uint8_t client_num,
       // Print out raw message
       Serial.printf("[%u] Received text: %s\n", client_num, payload);
 
-      // Toggle LED
-      if ( strcmp((char *)payload, "toggleLED") == 0 ) {
-        led_state = led_state ? 0 : 1;
+      // WEB Steuerung
+      if ( strcmp((char *)payload, "SysOFF") == 0 ) {
+        stSystemON = false;
         
-      // Report the state of the LED
-      } else if ( strcmp((char *)payload, "getLEDState") == 0 ) {
-        sprintf(msg_buf, "%d", led_state);
+      } else if ( strcmp((char *)payload, "Licht") == 0 ) {
+        licht = !licht;
+      
+      } else if ( strcmp((char *)payload, "Heiz") == 0 ) {
+        Heizung = !Heizung;
+
+      } else if ( strcmp((char *)payload, "PC") == 0 ) {
+        PC = !PC;
+
+      } else if ( strcmp((char *)payload, "Tools") == 0 ) {
+        tools = !tools;
+
+      } else if ( strcmp((char *)payload, "3DP") == 0 ) {
+        drucker = !drucker;
+
+      } else if ( strcmp((char *)payload, "getState") == 0 ) {
+
+        stSystem = stSysOFF << 0;
+        stSystem = licht << 1;
+        stSystem = tools << 2;
+        stSystem = PC << 3;
+        stSystem = drucker << 4;
+        stSystem = Heizung << 5;
+
+        sprintf(msg_buf, "%d", stSystem);
         webSocket.sendTXT(client_num, msg_buf);
 
       // Message not recognized
