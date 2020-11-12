@@ -1,5 +1,5 @@
+// Variablen Liste
 
-#define debug 1
 
 uint16_t temp_scaler = 110;
 int temp_offset = 60;
@@ -91,3 +91,16 @@ bool Taster_enco_alt = false;
 String M_Menu = "";
 String v1_Menu = "";
 String v2_Menu = "";
+
+
+// Webserver Variablen
+
+AsyncWebServer server(80);
+WebSocketsServer webSocket = WebSocketsServer(1337);
+int status = WL_IDLE_STATUS;     // the Wifi radio's status
+char msg_buf[10];
+int led_state = 0;
+uint8_t missconnectcounter = 0;
+IPAddress myip;
+IPAddress CLip;
+bool ServerisOn = false;
