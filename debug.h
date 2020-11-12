@@ -1,4 +1,3 @@
-
 #ifdef debug
 void debug_print() {
   Serial.println("");
@@ -47,6 +46,11 @@ void debug_print() {
 
   Serial.println("");
 
+  Serial.print("My IP address: ");
+  Serial.println(myip);
+  Serial.print("Client IP address: ");
+  Serial.println(CLip);
+
   Serial.print("Courser  :");
   Serial.print(courser_pos);
   Serial.println("");
@@ -81,6 +85,7 @@ void debug_print() {
     Serial.print(remind_timer_alt);
     Serial.println("");
   }
+
   Serial.print(millis() - cycletime);
 
   Serial.println("");

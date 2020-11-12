@@ -6,7 +6,7 @@
 #include <WebSocketsServer.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-#include "Constants"
+#include "Constants.h"
 #include "Variables.h"
 #include <FastLED.h>
 CRGB leds[NUM_LEDS];
@@ -36,7 +36,7 @@ void setup() {
 
   pinMode (Relais1_pin, OUTPUT);
   pinMode (Relais2_pin, OUTPUT);
-  //  pinMode (Relais3_pin, OUTPUT);
+  pinMode (Relais3_pin, OUTPUT);
   pinMode (Relais4_pin, OUTPUT);
   pinMode (Relais5_pin, OUTPUT);
   pinMode (Relais6_pin, OUTPUT);
@@ -48,20 +48,29 @@ void setup() {
   //  attachInterrupt(1, doEncoderB, CHANGE);
 
   remind_timer_alt = remind_timer;
+#ifdef debug
+  Serial.begin(115200);
+#endif
 
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Init");
   Relais1 = true;
   LED_INIT_SHOW();
+
+  if ( !SPIFFS.begin(true)) {
+    Serial.println("Error mounting SPIFFS");
+    while (1){
+      delay(250);
+    }
+  }
+
   lcd.setCursor(0, 0);
   lcd.print("System is ON");
   LED_Status();
   LED_SET();
   delay(1000);
-#ifdef debug
-  Serial.begin(115200);
-#endif
+
   lcd.clear();
 
   ledcSetup(channel, freq, resolution);
@@ -71,8 +80,20 @@ void setup() {
 
 //________________________________________________________________________ Main
 void loop() {
+    lcd.init();
+  lcd.backlight();
+  
+  if (status != WL_CONNECTED && millis() < wificonnecttime + routerbootdelay && missconnectcounter < 100 && millis() > routerbootdelay) {
+    Wificonnect();
+  }
+
+  if (!ServerisOn && status == WL_CONNECTED) {
+    StartServer();
+  }
+
 #ifdef debug
-  cycletime = millis();
+  if (missconnectcounter >= 100) Serial.println("Wifi Unable");
+    cycletime = millis();
 #endif
   Minuten = millis() / 1000 / 60;
   input_read();
@@ -84,6 +105,7 @@ void loop() {
   temp_control();
   LED_Status();
   LED_SET();
+  webSocket.loop();
 
   allesAndere = (licht || PC || tools);
 

@@ -1,3 +1,6 @@
+//   Constantwerte
+#define debug 1
+
 #define NUM_LEDS 5
 #define LED_MAX 200
 #define LED_LOW 25
@@ -31,3 +34,23 @@
 #define Taster_enco_pin 17
 #define encoder0PinA 5
 #define encoder0PinB 18
+
+// WEBServer
+// work 
+char ssid[] = "GEDA-Entwicklung";     //  your network SSID (name)
+char pass[] = "2aGQrMjn2DyC2DmYf47tfihP3R7kQRwF";  // your network password
+
+//// Keller 
+//char ssid[] = "Kellerkind";     //  your network SSID (name)
+//char pass[] = "Syn2tony";  // your network password
+//
+
+const char *msg_toggle_led = "toggleLED";
+const char *msg_get_led = "getLEDState";
+
+const int dns_port = 53;
+const int http_port = 80;
+const int ws_port = 1337;
+
+#define wificonnecttime 5000
+#define routerbootdelay 1000

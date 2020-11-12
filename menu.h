@@ -191,4 +191,8 @@ void LCD_OUTPUT() {
     lcd.setCursor(5, 1);
     lcd.print(" ");
   }
+  if (status != WL_CONNECTED) {
+    lcd.setCursor(9, 0);
+    lcd.print("*");
+  }
 }
