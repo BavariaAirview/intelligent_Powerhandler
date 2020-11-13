@@ -48,8 +48,6 @@ void debug_print() {
 
   Serial.print("My IP address: ");
   Serial.println(myip);
-  Serial.print("Client IP address: ");
-  Serial.println(CLip);
 
   Serial.print("Courser  :");
   Serial.print(courser_pos);

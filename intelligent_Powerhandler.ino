@@ -1,14 +1,13 @@
 #include <LiquidCrystal_I2C.h>
+#include <Arduino.h>
 #include <Wire.h>
 #include <WiFi.h>
-#include <SPIFFS.h>
-#include <ESPAsyncWebServer.h>
-#include <WebSocketsServer.h>
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 #include "Constants.h"
 #include "Variables.h"
 #include <FastLED.h>
+
 CRGB leds[NUM_LEDS];
 #include "Output.h"
 #include "encode.h"
@@ -16,7 +15,6 @@ CRGB leds[NUM_LEDS];
 #include "input.h"
 #include "debug.h"
 #include "Webserver.h"
-
 
 
 void setup() {
@@ -55,15 +53,10 @@ void setup() {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Init");
+  
   Relais1 = true;
   LED_INIT_SHOW();
-
-  if ( !SPIFFS.begin(true)) {
-    Serial.println("Error mounting SPIFFS");
-    while (1){
-      delay(250);
-    }
-  }
+  Relais_Output();
 
   lcd.setCursor(0, 0);
   lcd.print("System is ON");
@@ -80,20 +73,21 @@ void setup() {
 
 //________________________________________________________________________ Main
 void loop() {
-    lcd.init();
+  lcd.init();
   lcd.backlight();
-  
+
   if (status != WL_CONNECTED && millis() < wificonnecttime + routerbootdelay && missconnectcounter < 100 && millis() > routerbootdelay) {
     Wificonnect();
   }
-
-  if (!ServerisOn && status == WL_CONNECTED) {
-    StartServer();
+  if (status == WL_CONNECTED && !serverisset) {
+    serverisset = true;
+    myip = WiFi.localIP();
   }
+
 
 #ifdef debug
   if (missconnectcounter >= 100) Serial.println("Wifi Unable");
-    cycletime = millis();
+  cycletime = millis();
 #endif
   Minuten = millis() / 1000 / 60;
   input_read();
@@ -105,7 +99,7 @@ void loop() {
   temp_control();
   LED_Status();
   LED_SET();
-  webSocket.loop();
+  Webserver();
 
   allesAndere = (licht || PC || tools);
 
@@ -167,3 +161,9 @@ void loop() {
   debug_print();
 #endif
 } //__________________________________________________________end loop()
+
+void Wificonnect() {
+  WiFi.begin(ssid, pass);
+
+  serverisset = false;
+}

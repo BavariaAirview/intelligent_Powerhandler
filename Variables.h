@@ -46,6 +46,7 @@ long beepdelay = 0;
 long remind_counter = 0;
 long remind_timer_alt = 0;
 long cycletime = 0;
+long updatetime = 0;
 String error = "";
 bool printprogress = false;
 
@@ -91,17 +92,13 @@ String M_Menu = "";
 String v1_Menu = "";
 String v2_Menu = "";
 
+uint8_t webpower = 0;
+uint8_t weblicht = 0;
+uint8_t webtemp = 0;
 
 // Webserver Variablen
 
-AsyncWebServer server(80);
-WebSocketsServer webSocket = WebSocketsServer(1337);
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
-char msg_buf[10];
-
-uint16_t stSystem = 0;
-
 uint8_t missconnectcounter = 0;
 IPAddress myip;
-IPAddress CLip;
-bool ServerisOn = false;
+bool serverisset = false;
