@@ -13,12 +13,14 @@
                 "C:\\Program Files (x86)\\Arduino\\libraries\\**",
                 "C:\\Users\\tonn\\Documents\\Arduino\\libraries\\**",
                 "C:\\Users\\Martin\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\1.0.4\\**",
-                "C:\\Users\\Martin\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**"
+                "C:\\Users\\Martin\\AppData\\Local\\Arduino15\\packages\\esp32\\tools\\**",
+                "C:\\Users\\Martin\\Documents\\Arduino\\libraries\\**"
             ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "USBCON"
             ],
             "cStandard": "c17",
             "cppStandard": "c++17",
