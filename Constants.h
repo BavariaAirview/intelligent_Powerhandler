@@ -48,5 +48,5 @@ char ssid[] = "Kellerkind";     //  your network SSID (name)
 char pass[] = "Syn2tony";  // your network password
 #endif
 
-#define wificonnecttime 5000
-#define routerbootdelay 2000
+#define wificonnecttime 7000
+#define routerbootdelay 5000
