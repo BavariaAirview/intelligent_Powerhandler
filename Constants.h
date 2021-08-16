@@ -1,6 +1,8 @@
 //   Constantwerte
 #define debug 1
 
+#define Bootwait 5000
+
 #define arbeit 1
 // #define keller 1
 #define NUM_LEDS 5

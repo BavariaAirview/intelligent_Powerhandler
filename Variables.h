@@ -29,6 +29,7 @@ bool Relais6 = false;   // Tools
 bool Relais7 = false;   // PC
 bool Relais8 = false;   // Netzwerk
 bool aus = false;
+bool boot_init = true;
 
 int8_t courser_pos = 1;         // 1 = Hauptmenüpunkt, 2 = Value1, 3 = Value2
 int8_t nMainMenu = 0;
@@ -38,15 +39,15 @@ bool boolValue = false;
 bool set_boolValue = false;
 int8_t nValue2 = 2;
 float numValue2 = 0;
-long waittime = 0;
-long diplaytimer = 10000;
-long menudelay = 0;
-long printdelay = 0;
-long beepdelay = 0;
-long remind_counter = 0;
-long remind_timer_alt = 0;
-long cycletime = 0;
-long updatetime = 0;
+unsigned long waittime = 0;
+unsigned long diplaytimer = 10000;
+unsigned long menudelay = 0;
+unsigned long printdelay = 0;
+unsigned long beepdelay = 0;
+unsigned long remind_counter = 0;
+unsigned long remind_timer_alt = 0;
+unsigned long cycletime = 0;
+unsigned long updatetime = 0;
 String error = "";
 bool printprogress = false;
 

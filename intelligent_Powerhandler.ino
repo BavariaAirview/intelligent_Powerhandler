@@ -76,6 +76,39 @@ void loop() {
   lcd.init();
   lcd.backlight();
 
+  while(boot_init){
+      lcd.setCursor(1, 0);
+      lcd.print("Press for power on");
+      Taster_enco = digitalRead(Taster_enco_pin); 
+   if (Taster_enco) {
+      boot_init = false;
+      lcd.clear();
+      Taster_enco = false;
+      delay(500);
+      break;
+   }
+   if(millis() > Bootwait){
+     aus=true;
+     lcd.noBacklight();
+     digitalWrite(Relais1_pin, LOW);
+     digitalWrite(Relais2_pin, LOW);
+     digitalWrite(Relais3_pin, LOW);
+     digitalWrite(Relais4_pin, LOW);
+     digitalWrite(Relais5_pin, LOW);
+     digitalWrite(Relais6_pin, LOW);
+     digitalWrite(Relais7_pin, LOW);
+     digitalWrite(Relais8_pin, LOW);
+     leds[0] = CRGB(0, 0, 0);
+     leds[1] = CRGB(0, 0, 0);
+     leds[2] = CRGB(0, 0, 0);
+     leds[3] = CRGB(0, 0, 0);
+     leds[4] = CRGB(0, 0, 0);
+     FastLED.show();
+    }
+    delay(100);
+  }
+  
+
   if (status != WL_CONNECTED && millis() < wificonnecttime + routerbootdelay && missconnectcounter < 100 && millis() > routerbootdelay) {
     Wificonnect();
   }
